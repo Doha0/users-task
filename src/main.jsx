@@ -13,12 +13,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home/>,
+        element: <Home />,
       },
       {
-        path: "/profile",
-        element: <Profile/>
-      }
+        path: "/profile/:id",
+        element: <Profile />,
+        loader: ({ params }) =>
+          fetch(`https://dummyjson.com/users/${params.id}`),
+      },
     ],
   },
 ]);
