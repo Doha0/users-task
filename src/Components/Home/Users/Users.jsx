@@ -6,35 +6,53 @@ Description: ;
 */
 }
 
+import { MdEmail } from "react-icons/md";
+import { MdLocationCity } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
+import { Link } from "react-router-dom";
+
 const Users = ({ user }) => {
   const { image, firstName, lastName, email, address, company } = user;
   return (
-    <div className="max-w-md w-full overflow-hidden bg-white rounded-lg shadow-lg mx-auto mb-4 ">
-      <div className="flex flex-col w-full h-[30dvh] lg:h-[30vh] p-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold">
-            {firstName} {lastName}
-          </h2>
+    <div className="h-72 md:h-80 lg:h-96 w-full max-w-md overflow-hidden bg-[#fcfcfd] rounded-lg shadow-lg p-4">
+      <Link to="/profile">
+        <div className="grid justify-items-center flex-col ">
           <img
-            className="w-16 h-16 object-cover object-center rounded-lg p-1 bg-sky-200"
+            className="object-cover object-center flex justify-items-center w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 rounded-lg bg-rose-50 p-2"
             src={image}
-            alt="User Avatar"
+            alt="avatar"
           />
-        </div>
-        <div className="flex flex-col">
-          <p className="text-gray-600 mb-2">{email}</p>
-          <div className="mb-2">
-            <p className="font-semibold">Address:</p>
-            <p className="text-gray-600">
-              {address.address}, {address.postalCode}, {address.city}
-            </p>
+
+          <div className="px-2">
+            <Link to="/profile">
+              <h1 className="text-xl font-semibold my-3 text-gray-800 ">
+                {firstName} {lastName}
+              </h1>
+            </Link>
+            {/* email */}
+            <div className="flex items-center mt-2 text-gray-700 ">
+              <MdEmail size={24} />
+
+              <h1 className="px-2 text-sm">Email: {email}</h1>
+            </div>
+
+            {/* company name */}
+            <div className="flex items-center mt-2 text-gray-700 ">
+              <MdLocationCity size={24} />
+
+              <h1 className="px-2 text-sm">Company: {company.name}</h1>
+            </div>
+            {/* address */}
+            <div className="flex items-center mt-2 text-gray-700 ">
+              <MdLocationPin size={24} />
+
+              <h1 className="px-2 text-sm">
+                Address: {address.address}, {address.city}
+              </h1>
+            </div>
           </div>
-          <div className="mb-2">
-            <p className="font-semibold">Company:</p>
-            <p className="text-gray-600">{company.name}</p>
-          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
